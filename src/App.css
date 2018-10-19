@@ -1,32 +1,117 @@
-.App {
+header {
+  margin: auto;
   text-align: center;
+  padding: 3rem 4rem;
+  width: 80%;
+  background-color: white;
+  color: rgb(80, 77, 77);
+  font-family: Montserrat, sans-serif;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+header input {
+  display: block;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#search {
+  width: 100%;
+  line-height: 3rem;
+  text-align: center;
+  font-size: 1rem;
+  outline: none;
+  margin-top: .2rem;
+}
+
+#search:hover{
+  border: 2px solid rgb(208, 201, 201);  
+}
+
+.buttons {
+  margin: 2rem 1rem;
+  height: 3rem;
+  width: 9rem;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 2px;
+  background-color: rgb(191, 191, 182);
+  border: none;
+  outline: none;
+  color: white; 
+}
+
+.buttons:hover{
+  color: rgb(240, 237, 237);
+}
+
+h1 {
+  font-size: 3rem;
+  color: rgb(80, 77, 77);
+  margin-bottom: 3rem;
+  margin-top: 0;
+  width: 100%;
+}
+
+h2 {
+  color: rgb(169, 169, 158);
+  font-weight: normal;
+}
+
+.isClicked {
+  margin: 2rem 1rem;
+  height: 3rem;
+  width: 9rem;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 2px;
+  background-color: rgb(116, 116, 110);
+  border: none;
+  outline: none;
+  color: white; 
+}
+
+#expression, #number, #total {
+  color: black;
+}
+
+main {
+  width: 80%;
+  margin: 0 auto;
+}
+
+main:nth-child(5n+3) {
+  background-color: red;
+}
+
+.colored{
+  border-radius: 2px;
+  height: 110px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: #595959;
+  margin: 10px 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-content: space-around;
+  /* background-color: aquamarine; */
+  background-color: red;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media only screen and (max-width: 540px) {
+  header {
+    padding: 1rem;
+    width: 100%;
   }
-  to {
-    transform: rotate(360deg);
+  h1 {
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-size: 1.1rem;
+  }
+  .buttons {
+    margin: .5rem .5rem;
+    height: 3rem;
+    width: 9rem;
   }
 }
