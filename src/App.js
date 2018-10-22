@@ -13,21 +13,24 @@ class App extends Component {
     startContain: '',
     // for updating grammar in p expression in the header
     s: '',
-    with: ' with '
+    with: '',
+    startsButtonClass: 'buttons',
+    anyButtonClass: 'buttons'
   }
 
 // saves and updates user input and changes p expression
   updateInputValue = (e) => {
-    this.setState({ userInput: e.target.value, startContain: 'that start'});
+    this.setState({ userInput: e.target.value });
     this.findMatch()
   }
 
 // defines if user wants starting word or any and sets the expression in the header aswell
   startingOrAny = (e) => { 
+   
     if (e.target.value == 'first'){
-    this.setState({ typeOfSearch: 'first', startContain: 'that start', with: ' with ' }) 
+    this.setState({ typeOfSearch: 'first', startContain: 'that start', with: ' with ', startsButtonClass: 'isClicked', anyButtonClass: 'buttons'}) 
   } else {
-    this.setState({ typeOfSearch: 'any', startContain: 'that contain', with: ''}) 
+    this.setState({ typeOfSearch: 'any', startContain: 'that contain', with: '', startsButtonClass: 'buttons', anyButtonClass: 'isClicked'}) 
   }
 }
 
@@ -82,8 +85,8 @@ class App extends Component {
             <span id="expression"> {this.state.userInput.toUpperCase()}</span>
           </p>
 
-          <button type="submit" id="starting-word" className="buttons" onClick={this.startingOrAny } value="first">Starting Word</button>
-          <button type="submit" id="any-word" className="buttons" onClick={this.startingOrAny } value="any">Any word</button>
+          <button id="starting-word" className={this.state.startsButtonClass} value="first" onClick={this.startingOrAny} >Starting Word</button>
+          <button id="any-word" className={this.state.anyButtonClass} onClick={this.startingOrAny} value="any">Any word</button>
           <input type="text" placeholder="Search by..." id="search" onChange={this.updateInputValue} />
         </header>
         <main>
