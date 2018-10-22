@@ -72,7 +72,6 @@ class App extends Component {
       <div className="App">
         <header>
           <h1>WORLD COUNTRIES LIST</h1>
-// Expression in the header ************************************
           <p>There 
             <span id="verb" > {this.verbs().verb} </span>
             <span id="total">{this.findMatch().length} </span>
@@ -82,7 +81,7 @@ class App extends Component {
             <span>{this.state.with}</span>
             <span id="expression"> {this.state.userInput.toUpperCase()}</span>
           </p>
-// Expression in the header ************************************ end
+
           <button type="submit" id="starting-word" className="buttons" onClick={this.startingOrAny } value="first">Starting Word</button>
           <button type="submit" id="any-word" className="buttons" onClick={this.startingOrAny } value="any">Any word</button>
           <input type="text" placeholder="Search by..." id="search" onChange={this.updateInputValue} />

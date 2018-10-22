@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './Country.css'
 
-
-
-
 class Country extends Component {
   render() {
     return (
