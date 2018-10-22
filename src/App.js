@@ -10,22 +10,28 @@ class App extends Component {
   state = {
     userInput: '',
     typeOfSearch: 'first',
-    resultfor: 0
+    startContain: '',
+    // for updating grammar in p expression in the header
+    s: '',
+    with: ' with '
   }
 
+// saves and updates user input and changes p expression
   updateInputValue = (e) => {
-    this.setState({ userInput: e.target.value});
+    this.setState({ userInput: e.target.value, startContain: 'that start'});
     this.findMatch()
   }
 
+// defines if user wants starting word or any and sets the expression in the header aswell
   startingOrAny = (e) => { 
     if (e.target.value == 'first'){
-    this.setState({ typeOfSearch: 'first'}) 
+    this.setState({ typeOfSearch: 'first', startContain: 'that start', with: ' with ' }) 
   } else {
-    this.setState({ typeOfSearch: 'any'}) 
+    this.setState({ typeOfSearch: 'any', startContain: 'that contain', with: ''}) 
   }
 }
 
+// returns an array of searched countries
   findMatch = () => {
     let result = countries.filter((country) => {
       let upperCaseCountry = country.toUpperCase();
@@ -40,11 +46,19 @@ class App extends Component {
         return upperCaseCountry
       }   
     });
-
     return result
   }
 
-  color = (id) => {
+// fills logical grammar to the verbs in the header p
+  verbs = () => {if(this.findMatch().length === 1){
+    return {verb: 'is', noun: 'country ', letter: 's'}
+  } else if(this.findMatch().length === 1 && this.state.typeOfSearch === 'any') {
+  } else {
+    return {verb: 'are', noun: 'countries ', letter: ''}
+  }}
+
+//colors every second country for better visibility
+  twoColorsDisplay = (id) => {
     let remain = id % 2;
     if (remain === 0){
       return 'country'
@@ -58,20 +72,28 @@ class App extends Component {
       <div className="App">
         <header>
           <h1>WORLD COUNTRIES LIST</h1>
+// Expression in the header ************************************
           <p>There 
-            <span id="verb" > are </span>
-            <span id="total"></span>
-            <span id="number"></span>
-            <span id="countrie-s">countries</span>
-            <span id="start-contain"></span>
-            <span id="expression"></span>
+            <span id="verb" > {this.verbs().verb} </span>
+            <span id="total">{this.findMatch().length} </span>
+            <span id="countryies">{this.verbs().noun}</span>
+            <span id="start-contain">{this.state.startContain}</span>
+            <span>{this.verbs().letter}</span>
+            <span>{this.state.with}</span>
+            <span id="expression"> {this.state.userInput.toUpperCase()}</span>
           </p>
+// Expression in the header ************************************ end
           <button type="submit" id="starting-word" className="buttons" onClick={this.startingOrAny } value="first">Starting Word</button>
           <button type="submit" id="any-word" className="buttons" onClick={this.startingOrAny } value="any">Any word</button>
           <input type="text" placeholder="Search by..." id="search" onChange={this.updateInputValue} />
         </header>
         <main>
-            {this.findMatch().map((matchCtr, i) =><Country name={matchCtr} id={i} className={this.color(i)} />)}
+            {this.findMatch().map((matchCtr, i) =>
+              <Country 
+              name={matchCtr} 
+              id={i} 
+              className={this.twoColorsDisplay(i)} 
+              />)}
         </main>
       </div>
     );
