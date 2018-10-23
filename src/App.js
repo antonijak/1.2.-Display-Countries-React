@@ -10,11 +10,11 @@ class App extends Component {
   state = {
     userInput: '',
     typeOfSearch: 'first',
-    startContain: '',
+    startContain: 'starting ',
     // for updating grammar in p expression in the header
     s: '',
-    with: '',
-    startsButtonClass: 'buttons',
+    with: 'with',
+    startsButtonClass: 'isClicked',
     anyButtonClass: 'buttons'
   }
 
@@ -28,11 +28,11 @@ class App extends Component {
   startingOrAny = (e) => { 
    
     if (e.target.value == 'first'){
-    this.setState({ typeOfSearch: 'first', startContain: 'that start', with: ' with ', startsButtonClass: 'isClicked', anyButtonClass: 'buttons'}) 
-  } else {
+    this.setState({ typeOfSearch: 'first', startContain: 'starting', with: ' with ', startsButtonClass: 'isClicked', anyButtonClass: 'buttons'}) 
+    } else {
     this.setState({ typeOfSearch: 'any', startContain: 'that contain', with: '', startsButtonClass: 'buttons', anyButtonClass: 'isClicked'}) 
+    }
   }
-}
 
 // returns an array of searched countries
   findMatch = () => {
@@ -53,12 +53,14 @@ class App extends Component {
   }
 
 // fills logical grammar to the verbs in the header p
-  verbs = () => {if(this.findMatch().length === 1){
-    return {verb: 'is', noun: 'country ', letter: 's'}
-  } else if(this.findMatch().length === 1 && this.state.typeOfSearch === 'any') {
-  } else {
-    return {verb: 'are', noun: 'countries ', letter: ''}
-  }}
+  verbs = () => {if(this.findMatch().length === 1 && this.state.typeOfSearch === 'first'){
+      return {verb: 'is', noun: 'country ', letter: ''}
+    } else if(this.findMatch().length === 1 && this.state.typeOfSearch === 'any') {
+      return {verb: 'is', noun: 'country ', letter: 's'}
+    } else {
+      return {verb: 'are', noun: 'countries ', letter: ''}
+    }
+  }
 
 //colors every second country for better visibility
   twoColorsDisplay = (id) => {
